@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { SitePage } from "@/site/SitePage";
-import { siteHead } from "@/site/config";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Old address from the previous site; kept so existing links keep working.
 export const Route = createFileRoute("/en/home")({
-  head: () => siteHead("en", "home"),
-  component: () => <SitePage locale="en" page="home" />,
+  beforeLoad: () => {
+    throw redirect({ to: "/en", replace: true });
+  },
 });

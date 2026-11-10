@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SitePage } from "@/site/SitePage";
-import { siteHead } from "@/site/config";
+import { AboutPage } from "@/components/site/AboutPage";
+import { pageHead } from "@/content/site";
 
 export const Route = createFileRoute("/sv/om-oss")({
-  head: () => siteHead("sv", "about"),
-  component: () => <SitePage locale="sv" page="about" />,
+  head: () => pageHead("sv", "about"),
+  component: () => <AboutPage locale="sv" />,
 });

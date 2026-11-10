@@ -30,5 +30,6 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
-- Site pages render the original static HTML fragments from `src/site/fragments.ts` (generated from the migrated site) with page CSS in `src/site/css/` loaded per route via `head().links`; keeps the migrated design pixel-identical.
-- Tailwind preflight is intentionally disabled in `src/styles.css`, because the site's own `base.css` provides the reset.
+- All site copy for both languages lives in `src/content/site.ts`; pages in `src/components/site/` read from it so SV/EN stay in sync and route files stay thin.
+- Contact form posts to FormSubmit's AJAX endpoint (the provider the original site used); no backend needed.
+- Photos are pre-optimized WebP in `src/assets/`; keep new images small (WebP, ~900px) for load speed.

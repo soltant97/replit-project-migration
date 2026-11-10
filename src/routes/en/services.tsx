@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SitePage } from "@/site/SitePage";
-import { siteHead } from "@/site/config";
+import { ServicesPage } from "@/components/site/ServicesPage";
+import { pageHead } from "@/content/site";
 
 export const Route = createFileRoute("/en/services")({
-  head: () => siteHead("en", "services"),
-  component: () => <SitePage locale="en" page="services" />,
+  head: () => pageHead("en", "services"),
+  component: () => <ServicesPage locale="en" />,
 });

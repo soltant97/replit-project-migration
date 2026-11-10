@@ -1,8 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SitePage } from "@/site/SitePage";
-import { siteHead } from "@/site/config";
+import { ContactPage } from "@/components/site/ContactPage";
+import { isTopic, pageHead, type TopicKey } from "@/content/site";
 
 export const Route = createFileRoute("/en/contact")({
-  head: () => siteHead("en", "contact"),
-  component: () => <SitePage locale="en" page="contact" />,
+  validateSearch: (s: Record<string, unknown>): { topic?: TopicKey } => (isTopic(s["topic"]) ? { topic: s["topic"] } : {}),
+  head: () => pageHead("en", "contact"),
+  component: function Contact() {
+    const { topic } = Route.useSearch();
+    return <ContactPage locale="en" topic={topic} />;
+  },
 });
