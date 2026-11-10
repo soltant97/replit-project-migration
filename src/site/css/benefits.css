@@ -1,0 +1,37 @@
+    
+    
+    
+    
+    /* Mini text under header */
+
+
+
+    /* Mini texten under headern bakgrundsrad — raden under välkomstheadern */
+    .strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    /*  Mini texten under headern  — innehållsbredd, avstånd och textfärg */
+    .strip-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 19px 0;
+      color: #56675d;
+      font-size: 12px;
+    }
+    /* Enskild fMini texten under headern — placering av bock och text */
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    /* Bock-symbolerna före Mini texten under headerns texterna */
+    .check {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+
+

@@ -5,7 +5,9 @@
  *   build resolves @import from the filesystem. Load those with a <link> in the head() of
  *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
  */
-@import "tailwindcss" source(none);
+/* No Tailwind preflight: the migrated site's own base.css provides the reset. */
+@import "tailwindcss/theme" source(none);
+@import "tailwindcss/utilities" source(none);
 @source "../src";
 @import "tw-animate-css";
 
@@ -148,8 +150,4 @@
     border-color: var(--color-border);
   }
 
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-  }
 }

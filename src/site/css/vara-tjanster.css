@@ -1,0 +1,46 @@
+    /********************************** Våra Tjänster **********************************/
+
+
+    /* Tjänstekorten — antal kolumner och mellanrum */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 15px;
+    }
+    /* Varje tjänstekort — höjd, marginaler, kantlinje och bakgrund */
+    .service {
+      min-height: 210px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.66);
+    }
+    /* Symbolerna i tjänstekorten — storlek, färg och rund bakgrund */
+    .service-icon {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      margin-bottom: 23px;
+      border-radius: 50%;
+      background: var(--lime);
+      color: var(--green);
+      font-size: 17px;
+    }
+    /* Tjänstekortens rubriker: ”Anslut befintliga kort”, ”Matcha mot kortköp”, ”Skicka till Fortnox” */
+    .service h3 {
+      margin: 0 0 9px;
+      font-size: 17px;
+      letter-spacing: -.5px;
+    }
+    /* Beskrivningstexten i vart och ett av tjänstekorten */
+    .service p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+
+
+

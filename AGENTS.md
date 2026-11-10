@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Site pages render the original static HTML fragments from `src/site/fragments.ts` (generated from the migrated site) with page CSS in `src/site/css/` loaded per route via `head().links`; keeps the migrated design pixel-identical.
+- Tailwind preflight is intentionally disabled in `src/styles.css`, because the site's own `base.css` provides the reset.

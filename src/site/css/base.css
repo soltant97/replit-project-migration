@@ -1,0 +1,209 @@
+
+
+
+
+
+/********************************** Grundinställningar **********************************/
+
+    /* FÄRGER OCH DESIGNVARIABLER — ändra var(--green), --paper osv. här */
+    :root {
+      --ink: #20352d;
+      --muted: #66746d;
+      --green: #315d49;
+      --dark: #244536;
+      --lime: #d9e7c8;
+      --paper: #fff;
+      --white: #fff;
+      --line: #e5e8df;
+      --serif: Georgia,'Times New Roman',serif;
+    }
+    /* Grundläggande boxmodell — gör bredd och padding lättare att förutse */
+    * {
+      box-sizing: border-box;
+    }
+    /* Sidbeteende — mjuk rullning och avstånd vid hopp till menyankare */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+    /* Hela sidans grund — standardtext, textfärg och övergripande bakgrund */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: 'DM Sans',sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Sidans huvudinnehåll fyller tomrummet så sidfoten hamnar längst ned */
+    main {
+      flex: 1 0 auto;
+    }
+    /* Alla länkar — grundfärg och standardunderstrykning */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    /* Gemensam sidbredd — innehåll som hålls centrerat med marginaler */
+    .wrap {
+      width: min(1120px,calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+
+    /********************************** Navigering OCH LOGOTYP **********************************/
+
+    /* Menyradens bakgrund — färg, genomskinlighet och suddig effekt */
+    header {
+      position: sticky;
+      z-index: 5;
+      top: 0;
+      border-bottom: 1px solid rgba(32,53,45,.08);
+      /*background: rgba(247,247,242,.94);*/
+      background: #1d392c;
+      backdrop-filter: blur(14px);
+    }
+    /* Menyradens höjd och placering — logotyp till vänster, länkar till höger */
+    .nav {
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      transform: translateY(6px);
+    }
+    /* Menyradens sidmarginaler — separat bredd från övrigt sidinnehåll */
+    .nav.wrap {
+      width: calc(100% - 48px);
+      max-width: none;
+    }
+    /* LOGOTYPENS PLACERING Logotypen i menyraden — placering och storlek */
+    .brand {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      margin-left: 10px;
+      
+
+  
+    }
+
+    /* när sidan är mindre än 680 så ändras loggans placering*/
+
+@media (max-width: 680px) {
+  .brand {
+    margin-left: -5px;
+  }
+}
+
+
+    /* LOGOTYP STORLEK Logotypbildens bredd i menyraden */
+
+
+
+    .brand img {
+      display: block;
+      width: 260px;
+      height: auto;
+      filter: brightness(0) invert(1);
+
+    }
+    /* Språkväljaren ”SV | EN” — placeras före Hem på desktop */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-left: auto;
+    }
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      flex: 0 0 auto;
+      color: rgba(255,255,255,.62);
+      font-size: 13px;
+    }
+    .language-switch button {
+      padding: 5px 2px;
+      border: 0;
+      color: rgba(255,255,255,.76);
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+    }
+    .language-switch button[aria-pressed="true"] {
+      color: #fff;
+      font-weight: 700;
+    }
+    .language-switch button:hover,
+    .language-switch button:focus-visible {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    /* Menytexterna — mellanrum, vit färg och textstorlek */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      font-size: 14px;
+    }
+    /* Vanliga menyval — behåll vit text och visa understreck vid hovring eller tangentbordsfokus */
+    .nav-links a:not(.nav-cta):hover,
+    .nav-links a:not(.nav-cta):focus-visible {
+      color: #fff;
+      text-decoration: underline;
+      text-decoration-color: #fff;
+      text-underline-offset: 4px;
+    }
+
+    /********************************** Kontaktknappen i menyn **********************************/
+
+    /* Menyknappen ”Kontakt” — storlek, rundade hörn, färger och fetstil */
+    .nav-links .nav-cta {
+      padding: 12px 18px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--green);
+      font-weight: 600;
+      transition: background-color .2s;
+    }
+    /* Pilen i knappen ”Kontakt” — vanlig teckenpil även på mobil */
+    .nav-cta-arrow {
+      font-family: Arial, sans-serif;
+      font-variant-emoji: text;
+    }
+    /* Knappen ”Kontakt” — tona bara knappens bakgrund, behåll vit text utan understreck */
+    .nav-links .nav-cta:hover,
+    .nav-links .nav-cta:focus-visible {
+      color: #fff;
+      background: #42765c;
+      text-decoration: none;
+    }
+    /* Mobilmenyns öppningsknapp ”Meny” — dold på större skärmar */
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+    }
+
+/* Håll sidans innehåll och gröna fält inom skärmens bredd */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+header,
+footer {
+  width: 100%;
+}

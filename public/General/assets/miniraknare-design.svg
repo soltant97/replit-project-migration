@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="760" viewBox="0 0 760 760" role="img" aria-labelledby="title description">
+  <title id="title">Ekonomika miniräknardesign</title>
+  <desc id="description">En stilren, lätt vinklad miniräknare med en stor skärm som visar ett kontor och tydliga siffer- och räkneknappar.</desc>
+  <defs>
+    <clipPath id="screen-shape">
+      <path d="M258 148 Q258 139 268 139 H493 Q503 139 503 149 V279 Q503 289 493 289 H268 Q258 289 258 279 Z"/>
+    </clipPath>
+    <filter id="soft-shadow" x="-25%" y="-20%" width="150%" height="155%">
+      <feDropShadow dx="0" dy="14" stdDeviation="13" flood-color="#20352d" flood-opacity=".16"/>
+    </filter>
+  </defs>
+
+  <!-- Miniräknarens kropp — vinklad, mjukt rundad och ritad i Ekonomikas gröna färg -->
+  <g transform="rotate(23 380 380)" filter="url(#soft-shadow)" stroke-linejoin="round">
+    <path d="M233 109 Q233 83 260 83 H500 Q527 83 527 110 V650 Q527 677 500 677 H260 Q233 677 233 650 Z"
+      fill="#fbfbf7" stroke="#244536" stroke-width="5"/>
+    <path d="M246 119 Q246 97 269 97 H491 Q514 97 514 120 V310 H246 Z"
+      fill="#eef2e9" stroke="#244536" stroke-width="2.5"/>
+
+    <!-- Stor skärm — samma kontorsfoto, beskuret och placerat i displayen -->
+    <image href="../General/assets/redovisning-kontor.png"
+      x="258" y="139" width="245" height="150"
+      preserveAspectRatio="xMidYMid slice" clip-path="url(#screen-shape)"/>
+    <path d="M258 148 Q258 139 268 139 H493 Q503 139 503 149 V279 Q503 289 493 289 H268 Q258 289 258 279 Z"
+      fill="none" stroke="#244536" stroke-width="3"/>
+
+    <!-- Knappar — siffror och vanliga räknetecken -->
+    <g font-family="DM Sans, Arial, sans-serif" font-size="22" font-weight="600" text-anchor="middle" dominant-baseline="central">
+      <!-- Rad 1: rensa, teckenbyte, procent och division -->
+      <g><rect x="256" y="337" width="56" height="46" rx="12" fill="#e8efe3" stroke="#315d49" stroke-width="2"/><text x="284" y="360" fill="#315d49" font-size="15">AC</text></g>
+      <g><rect x="320" y="337" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="348" y="360" fill="#20352d">±</text></g>
+      <g><rect x="384" y="337" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="412" y="360" fill="#20352d">%</text></g>
+      <g><rect x="448" y="337" width="56" height="46" rx="12" fill="#d9e7c8" stroke="#315d49" stroke-width="2"/><text x="476" y="360" fill="#244536">÷</text></g>
+
+      <!-- Rad 2: sju, åtta, nio och multiplikation -->
+      <g><rect x="256" y="391" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="284" y="414" fill="#20352d">7</text></g>
+      <g><rect x="320" y="391" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="348" y="414" fill="#20352d">8</text></g>
+      <g><rect x="384" y="391" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="412" y="414" fill="#20352d">9</text></g>
+      <g><rect x="448" y="391" width="56" height="46" rx="12" fill="#d9e7c8" stroke="#315d49" stroke-width="2"/><text x="476" y="414" fill="#244536">×</text></g>
+
+      <!-- Rad 3: fyra, fem, sex och subtraktion -->
+      <g><rect x="256" y="445" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="284" y="468" fill="#20352d">4</text></g>
+      <g><rect x="320" y="445" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="348" y="468" fill="#20352d">5</text></g>
+      <g><rect x="384" y="445" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="412" y="468" fill="#20352d">6</text></g>
+      <g><rect x="448" y="445" width="56" height="46" rx="12" fill="#d9e7c8" stroke="#315d49" stroke-width="2"/><text x="476" y="468" fill="#244536">−</text></g>
+
+      <!-- Rad 4: ett, två, tre och addition -->
+      <g><rect x="256" y="499" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="284" y="522" fill="#20352d">1</text></g>
+      <g><rect x="320" y="499" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="348" y="522" fill="#20352d">2</text></g>
+      <g><rect x="384" y="499" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="412" y="522" fill="#20352d">3</text></g>
+      <g><rect x="448" y="499" width="56" height="46" rx="12" fill="#d9e7c8" stroke="#315d49" stroke-width="2"/><text x="476" y="522" fill="#244536">+</text></g>
+
+      <!-- Rad 5: noll, decimaltecken och resultat -->
+      <g><rect x="256" y="553" width="120" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="316" y="576" fill="#20352d">0</text></g>
+      <g><rect x="384" y="553" width="56" height="46" rx="12" fill="#fff" stroke="#315d49" stroke-width="2"/><text x="412" y="576" fill="#20352d">,</text></g>
+      <g><rect x="448" y="553" width="56" height="46" rx="12" fill="#315d49" stroke="#315d49" stroke-width="2"/><text x="476" y="576" fill="#fff">=</text></g>
+    </g>
+  </g>
+</svg>

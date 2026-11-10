@@ -1,0 +1,6 @@
+[
+ {"capability":"code (static bilingual site, 8 pages)","source":"replit zip","outcome":"migrate","status":"verified","next_action":"none"},
+ {"capability":"images/logos","source":"General/assets","outcome":"migrate","status":"verified","next_action":"none"},
+ {"capability":"contact form (FormSubmit to ekonomikakontakt@gmail.com)","source":"Kontakt/contact.html","outcome":"preserve","status":"implemented","next_action":"send a live test message after publishing"},
+ {"capability":"database/records/auth/storage/schedules/secrets","source":"none detected","outcome":"absent","status":"verified","next_action":"none"}
+]

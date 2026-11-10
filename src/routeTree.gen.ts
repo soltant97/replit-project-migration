@@ -10,33 +10,167 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EnIndexRouteImport } from './routes/en/index'
+import { Route as EnAboutRouteImport } from './routes/en/about'
+import { Route as EnContactRouteImport } from './routes/en/contact'
+import { Route as EnHomeRouteImport } from './routes/en/home'
+import { Route as EnServicesRouteImport } from './routes/en/services'
+import { Route as SvIndexRouteImport } from './routes/sv/index'
+import { Route as SvHemRouteImport } from './routes/sv/hem'
+import { Route as SvKontaktRouteImport } from './routes/sv/kontakt'
+import { Route as SvOmOssRouteImport } from './routes/sv/om-oss'
+import { Route as SvTjansterRouteImport } from './routes/sv/tjanster'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/en/',
+  path: '/en/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnAboutRoute = EnAboutRouteImport.update({
+  id: '/en/about',
+  path: '/en/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnContactRoute = EnContactRouteImport.update({
+  id: '/en/contact',
+  path: '/en/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnHomeRoute = EnHomeRouteImport.update({
+  id: '/en/home',
+  path: '/en/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnServicesRoute = EnServicesRouteImport.update({
+  id: '/en/services',
+  path: '/en/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvIndexRoute = SvIndexRouteImport.update({
+  id: '/sv/',
+  path: '/sv/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvHemRoute = SvHemRouteImport.update({
+  id: '/sv/hem',
+  path: '/sv/hem',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvKontaktRoute = SvKontaktRouteImport.update({
+  id: '/sv/kontakt',
+  path: '/sv/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvOmOssRoute = SvOmOssRouteImport.update({
+  id: '/sv/om-oss',
+  path: '/sv/om-oss',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvTjansterRoute = SvTjansterRouteImport.update({
+  id: '/sv/tjanster',
+  path: '/sv/tjanster',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/home': typeof EnHomeRoute
+  '/en/services': typeof EnServicesRoute
+  '/sv/hem': typeof SvHemRoute
+  '/sv/kontakt': typeof SvKontaktRoute
+  '/sv/om-oss': typeof SvOmOssRoute
+  '/sv/tjanster': typeof SvTjansterRoute
+  '/en/': typeof EnIndexRoute
+  '/sv/': typeof SvIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/home': typeof EnHomeRoute
+  '/en/services': typeof EnServicesRoute
+  '/sv/hem': typeof SvHemRoute
+  '/sv/kontakt': typeof SvKontaktRoute
+  '/sv/om-oss': typeof SvOmOssRoute
+  '/sv/tjanster': typeof SvTjansterRoute
+  '/en': typeof EnIndexRoute
+  '/sv': typeof SvIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/home': typeof EnHomeRoute
+  '/en/services': typeof EnServicesRoute
+  '/sv/hem': typeof SvHemRoute
+  '/sv/kontakt': typeof SvKontaktRoute
+  '/sv/om-oss': typeof SvOmOssRoute
+  '/sv/tjanster': typeof SvTjansterRoute
+  '/en/': typeof EnIndexRoute
+  '/sv/': typeof SvIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/home'
+    | '/en/services'
+    | '/sv/hem'
+    | '/sv/kontakt'
+    | '/sv/om-oss'
+    | '/sv/tjanster'
+    | '/en/'
+    | '/sv/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/home'
+    | '/en/services'
+    | '/sv/hem'
+    | '/sv/kontakt'
+    | '/sv/om-oss'
+    | '/sv/tjanster'
+    | '/en'
+    | '/sv'
+  id:
+    | '__root__'
+    | '/'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/home'
+    | '/en/services'
+    | '/sv/hem'
+    | '/sv/kontakt'
+    | '/sv/om-oss'
+    | '/sv/tjanster'
+    | '/en/'
+    | '/sv/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EnAboutRoute: typeof EnAboutRoute
+  EnContactRoute: typeof EnContactRoute
+  EnHomeRoute: typeof EnHomeRoute
+  EnServicesRoute: typeof EnServicesRoute
+  SvHemRoute: typeof SvHemRoute
+  SvKontaktRoute: typeof SvKontaktRoute
+  SvOmOssRoute: typeof SvOmOssRoute
+  SvTjansterRoute: typeof SvTjansterRoute
+  EnIndexRoute: typeof EnIndexRoute
+  SvIndexRoute: typeof SvIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +182,91 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/': {
+      id: '/en/'
+      path: '/en'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/about': {
+      id: '/en/about'
+      path: '/en/about'
+      fullPath: '/en/about'
+      preLoaderRoute: typeof EnAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/contact': {
+      id: '/en/contact'
+      path: '/en/contact'
+      fullPath: '/en/contact'
+      preLoaderRoute: typeof EnContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/home': {
+      id: '/en/home'
+      path: '/en/home'
+      fullPath: '/en/home'
+      preLoaderRoute: typeof EnHomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/services': {
+      id: '/en/services'
+      path: '/en/services'
+      fullPath: '/en/services'
+      preLoaderRoute: typeof EnServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/': {
+      id: '/sv/'
+      path: '/sv'
+      fullPath: '/sv/'
+      preLoaderRoute: typeof SvIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/hem': {
+      id: '/sv/hem'
+      path: '/sv/hem'
+      fullPath: '/sv/hem'
+      preLoaderRoute: typeof SvHemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/kontakt': {
+      id: '/sv/kontakt'
+      path: '/sv/kontakt'
+      fullPath: '/sv/kontakt'
+      preLoaderRoute: typeof SvKontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/om-oss': {
+      id: '/sv/om-oss'
+      path: '/sv/om-oss'
+      fullPath: '/sv/om-oss'
+      preLoaderRoute: typeof SvOmOssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sv/tjanster': {
+      id: '/sv/tjanster'
+      path: '/sv/tjanster'
+      fullPath: '/sv/tjanster'
+      preLoaderRoute: typeof SvTjansterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EnAboutRoute: EnAboutRoute,
+  EnContactRoute: EnContactRoute,
+  EnHomeRoute: EnHomeRoute,
+  EnServicesRoute: EnServicesRoute,
+  SvHemRoute: SvHemRoute,
+  SvKontaktRoute: SvKontaktRoute,
+  SvOmOssRoute: SvOmOssRoute,
+  SvTjansterRoute: SvTjansterRoute,
+  EnIndexRoute: EnIndexRoute,
+  SvIndexRoute: SvIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
