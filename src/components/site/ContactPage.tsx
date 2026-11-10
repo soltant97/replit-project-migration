@@ -44,15 +44,14 @@ export function ContactPage({ locale, topic }: { locale: Locale; topic?: TopicKe
     }
   }
 
-  const field =
-    "w-full rounded-2xl border border-input bg-background px-4 py-3.5 text-base transition-all placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-4 focus:ring-ring/20";
+  const field = "contact-field placeholder:text-muted-foreground/70";
 
   return (
     <SiteLayout locale={locale} page="contact">
       <PageHeader eyebrow={c.eyebrow} title={c.title} lead={c.lead} />
       <section className="pb-28">
-        <div className="container-site grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <aside data-reveal className="grain flex flex-col rounded-[2rem] bg-forest p-8 text-forest-foreground md:p-10">
+        <div className="container-site grid gap-12 border-t border-border pt-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <aside data-reveal className="flex flex-col items-start">
             <h2 className="font-display text-3xl">{c.details}</h2>
             <dl className="mt-8 space-y-6">
               <Detail icon={<MapPin className="size-4" />} label={c.address}>{c.city}</Detail>
@@ -63,12 +62,12 @@ export function ContactPage({ locale, topic }: { locale: Locale; topic?: TopicKe
                 <a href={`tel:${CONTACT_PHONE}`} className="underline-offset-4 hover:underline">{CONTACT_PHONE}</a>
               </Detail>
             </dl>
-            <Button asChild variant="lineLight" size="xl" className="mt-10 self-start lg:mt-auto">
+            <Button asChild variant="line" size="xl" className="mt-10 self-start">
               <a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(c.form.subject)}`}>{c.emailUs} <ArrowUpRight /></a>
             </Button>
           </aside>
 
-          <div data-reveal className="rounded-[2rem] border border-border bg-card p-8 shadow-soft md:p-12" id="contact-form">
+          <div data-reveal id="contact-form" className="min-w-0">
             {status === "sent" ? (
               <div className="flex min-h-[26rem] flex-col items-start justify-center" role="status">
                 <CheckCircle2 className="size-14 text-leaf animate-word-in" />
@@ -81,18 +80,19 @@ export function ContactPage({ locale, topic }: { locale: Locale; topic?: TopicKe
                   <legend className="mb-3 text-sm font-bold">{c.form.topic}</legend>
                   <div className="flex flex-wrap gap-2">
                     {TOPICS.map((k) => (
-                      <button
+                      <Button
                         key={k}
                         type="button"
+                        variant="ghost"
                         aria-pressed={selected === k}
                         onClick={() => setSelected(selected === k ? undefined : k)}
                         className={cn(
-                          "rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300",
+                          "h-auto whitespace-normal rounded-none border px-4 py-2 text-sm font-medium transition-all duration-300",
                           selected === k ? "border-primary bg-primary text-primary-foreground" : "border-border hover:border-primary/50",
                         )}
                       >
                         {c.topics[k]}
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 </fieldset>
@@ -130,9 +130,9 @@ export function ContactPage({ locale, topic }: { locale: Locale; topic?: TopicKe
 function Detail({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
   return (
     <div className="flex gap-4">
-      <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-forest-foreground/10 text-leaf">{icon}</span>
+      <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center bg-card text-primary">{icon}</span>
       <div>
-        <dt className="eyebrow text-forest-muted">{label}</dt>
+        <dt className="eyebrow text-muted-foreground">{label}</dt>
         <dd className="mt-1 text-lg">{children}</dd>
       </div>
     </div>

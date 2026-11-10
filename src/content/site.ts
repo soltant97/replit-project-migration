@@ -46,6 +46,8 @@ const sv = {
   },
   nav: { home: "Hem", services: "Tjänster", about: "Om oss", contact: "Kontakta oss", menu: "Meny", close: "Stäng", skip: "Hoppa till innehållet", langLabel: "Välj språk", homeLabel: "Ekonomika, till startsidan" },
   hero: {
+    title: "Ekonomika",
+    imageAlt: "Illustrativ interiör med ljusa arbetsplatser och utsikt över Stockholm",
     eyebrow: "Digital redovisningsbyrå · Stockholm",
     professions: ["Byggare", "Frisör", "Läkare", "Advokat"],
     or: "eller",
@@ -166,6 +168,8 @@ const en: Dict = {
   },
   nav: { home: "Home", services: "Services", about: "About", contact: "Contact us", menu: "Menu", close: "Close", skip: "Skip to content", langLabel: "Choose language", homeLabel: "Ekonomika, go to the home page" },
   hero: {
+    title: "Ekonomika",
+    imageAlt: "Illustrative interior with light workspaces overlooking Stockholm",
     eyebrow: "Digital accounting firm · Stockholm",
     professions: ["Builders", "Hairdressers", "Doctors", "Lawyers"],
     or: "or",
