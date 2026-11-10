@@ -16,9 +16,9 @@ function activateNavigation(locale: Locale, page: PageKey, isLocaleRoot: boolean
   const menu = document.querySelector<HTMLElement>("#nav-links");
 
   document.querySelectorAll<HTMLButtonElement>("[data-language]").forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.language === locale));
+    button.setAttribute("aria-pressed", String(button.dataset["language"] === locale));
     button.onclick = () => {
-      const next = button.dataset.language as Locale;
+      const next = button.dataset["language"] as Locale;
       if (next === locale) return;
       window.location.href = isLocaleRoot ? `/${next}/` : routePath(next, page);
     };
@@ -68,6 +68,7 @@ function activateScrollFade() {
 }
 
 type Pt = [number, number];
+type Seg = [Pt, Pt, Pt, Pt];
 function alignHomeWaveWithFirstCircle() {
   const intro = document.querySelector<HTMLElement>(".home-intro");
   const services = document.querySelector<HTMLElement>(".home-services");
@@ -76,13 +77,13 @@ function alignHomeWaveWithFirstCircle() {
   );
   if (!intro || !services || !firstCircle) return () => {};
 
-  const lowerWaveSegments: Pt[][] = [
+  const lowerWaveSegments: Seg[] = [
     [[1600, 770], [1452, 704], [1310, 676], [1154, 719]],
     [[1154, 719], [974, 768], [886, 790], [700, 762]],
     [[700, 762], [492, 732], [338, 702], [184, 748]],
     [[184, 748], [105, 772], [40, 804], [0, 837]],
   ];
-  const bez = (p: Pt[], t: number, a: 0 | 1) => {
+  const bez = (p: Seg, t: number, a: 0 | 1) => {
     const i = 1 - t;
     return i ** 3 * p[0][a] + 3 * i ** 2 * t * p[1][a] + 3 * i * t ** 2 * p[2][a] + t ** 3 * p[3][a];
   };
