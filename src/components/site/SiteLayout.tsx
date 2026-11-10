@@ -1,54 +1,184 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowUpRight, Facebook, Menu, X } from "lucide-react";
+import { useEffect, useState, type ReactNode } from "react";
+import { ArrowUpRight, Facebook, Instagram, Linkedin, Menu, X } from "lucide-react";
+import logo from "@/assets/logo.webp";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CONTACT_EMAIL, SOCIAL, dict, pathFor, type Locale, type PageKey } from "@/content/site";
 import { useReveal } from "./useReveal";
+
 const NAV: PageKey[] = ["home", "services", "about"];
-function Wordmark() { return <span className="wordmark"><span className="brand-symbol" aria-hidden />Ekonomika<span className="text-primary">.</span></span>; }
-export function SiteLayout({locale,page,children}: {locale: Locale; page: PageKey; children: ReactNode}) {
-  const t=dict[locale]; const [open,setOpen]=useState(false); const location=useLocation(); const menuRef=useRef<HTMLDivElement>(null);
+
+export function SiteLayout({ locale, page, children }: { locale: Locale; page: PageKey; children: ReactNode }) {
+  const t = dict[locale];
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
   useReveal(location.pathname);
-  useEffect(()=>{document.documentElement.lang=locale;},[locale]);
-  useEffect(()=>setOpen(false),[location.pathname]);
-  useEffect(()=>{
-    if (!open) return;
-    const previous=document.body.style.overflow; document.body.style.overflow="hidden";
-    const onKey=(e:KeyboardEvent)=>{
-      if(e.key==="Escape") setOpen(false);
-      if(e.key!=="Tab") return;
-      const links=menuRef.current?.querySelectorAll<HTMLElement>('a, button');
-      const first=links?.[0]; const last=links?.[links.length-1];
-      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}
-      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
-    };
-    menuRef.current?.querySelector<HTMLElement>('button')?.focus();
-    window.addEventListener("keydown",onKey);
-    return ()=>{document.body.style.overflow=previous;window.removeEventListener("keydown",onKey);};
-  },[open]);
-  return <div className="flex min-h-screen flex-col">
-    <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-accent focus:p-3">{t.nav.skip}</a>
-    <header className="site-header border-b border-border bg-background"><nav className="container-site flex h-full items-center justify-between gap-4" aria-label={t.nav.menu}>
-      <Link to={pathFor(locale,"home")} aria-label={t.nav.homeLabel} className="shrink-0"><Wordmark /></Link>
-      <div className="hidden items-center gap-8 md:flex">{NAV.map(p=><Button asChild variant="link" key={p} className={cn("h-auto rounded-none px-0 py-2 text-sm font-medium text-foreground hover:no-underline",page===p&&"border-b border-primary text-primary")}><Link to={pathFor(locale,p)} aria-current={page===p?"page":undefined}>{t.nav[p]}</Link></Button>)}</div>
-      <div className="flex items-center gap-5"><LangSwitch locale={locale} page={page} label={t.nav.langLabel} /><Button asChild variant="brand" className="hidden h-11 gap-6 lg:inline-flex"><Link to={pathFor(locale,"contact")}>{t.nav.contact}<ArrowUpRight /></Link></Button><Button variant="ghost" size="icon" className="rounded-none md:hidden" aria-expanded={open} aria-controls="mobile-menu" aria-label={t.nav.menu} onClick={()=>setOpen(true)}><Menu /></Button></div>
-    </nav></header>
-    {open&&<div ref={menuRef} id="mobile-menu" role="dialog" aria-modal="true" aria-label={t.nav.menu} className="fixed inset-0 z-[60] flex flex-col bg-primary p-6 text-primary-foreground md:hidden">
-      <div className="flex items-center justify-between"><span className="wordmark">Ekonomika.</span><Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10 hover:text-primary-foreground" aria-label={t.nav.close} onClick={()=>setOpen(false)}><X /></Button></div>
-      <ul className="mt-16">{[...NAV,"contact" as PageKey].map((p,i)=><li key={p} className="border-b border-primary-foreground/30"><Link to={pathFor(locale,p)} className="flex items-center justify-between py-6 text-3xl"><span>{t.nav[p]}</span><span className="font-mono text-sm">0{i+1}</span></Link></li>)}</ul><a href={`mailto:${CONTACT_EMAIL}`} className="mt-auto break-all py-6">{CONTACT_EMAIL}</a><LangSwitch locale={locale} page={page} label={t.nav.langLabel} />
-    </div>}
-    <main id="main" className="flex-1">{children}</main><Footer locale={locale} />
-  </div>;
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+  useEffect(() => setOpen(false), [location.pathname]);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const other: Locale = locale === "sv" ? "en" : "sv";
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">
+        {t.nav.skip}
+      </a>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+          scrolled ? "bg-background/85 py-3 shadow-soft backdrop-blur-xl" : "bg-transparent py-5",
+        )}
+      >
+        <nav className="container-site flex items-center justify-between gap-6" aria-label={t.nav.menu}>
+          <Link to={pathFor(locale, "home")} aria-label={t.nav.homeLabel} className="shrink-0">
+            <img src={logo} alt="Ekonomika" width={150} height={50} className="h-9 w-auto md:h-10" />
+          </Link>
+
+          <div className="hidden items-center gap-1 md:flex">
+            {NAV.map((p) => (
+              <Link
+                key={p}
+                to={pathFor(locale, p)}
+                className={cn(
+                  "relative rounded-full px-4 py-2 text-sm font-medium transition-colors hover:text-primary",
+                  page === p ? "text-primary" : "text-foreground/75",
+                )}
+              >
+                {t.nav[p]}
+                {page === p && <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-leaf" />}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <LangSwitch locale={locale} page={page} label={t.nav.langLabel} />
+            <Button asChild variant="brand" className="hidden h-10 px-5 md:inline-flex">
+              <Link to={pathFor(locale, "contact")}>
+                {t.nav.contact} <ArrowUpRight />
+              </Link>
+            </Button>
+            <button
+              type="button"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-foreground/15 md:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? t.nav.close : t.nav.menu}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <div
+        id="mobile-menu"
+        className={cn(
+          "fixed inset-0 z-40 flex flex-col bg-forest px-6 pb-10 pt-28 text-forest-foreground transition-all duration-500 md:hidden",
+          open ? "visible opacity-100" : "invisible opacity-0",
+        )}
+      >
+        <ul className="space-y-2">
+          {[...NAV, "contact" as PageKey].map((p, i) => (
+            <li key={p} style={{ transitionDelay: open ? `${80 + i * 60}ms` : "0ms" }} className={cn("transition-all duration-500", open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")}>
+              <Link to={pathFor(locale, p)} className="font-display block py-2 text-5xl">
+                {t.nav[p]}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-auto space-y-1 text-sm text-forest-muted">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="block underline-offset-4 hover:underline">{CONTACT_EMAIL}</a>
+          <Link to={pathFor(other, page)} className="block pt-3 font-semibold text-forest-foreground">
+            {other === "en" ? "In English →" : "På svenska →"}
+          </Link>
+        </div>
+      </div>
+
+      <main id="main" className="flex-1">{children}</main>
+
+      <Footer locale={locale} />
+    </div>
+  );
 }
-function LangSwitch({locale,page,label}: {locale:Locale;page:PageKey;label:string}) {
-  return <div role="group" aria-label={label} className="flex items-center gap-2 font-mono text-xs">{(["sv","en"] as Locale[]).map((l,i)=><span key={l} className="flex items-center gap-2">{i===1&&<span className="opacity-30">/</span>}<Link to={pathFor(l,page)} hrefLang={l} aria-current={l===locale?"true":undefined} className={cn("py-2 uppercase",l===locale?"underline underline-offset-4":"opacity-50 hover:opacity-100")}>{l}</Link></span>)}</div>;
+
+function LangSwitch({ locale, page, label }: { locale: Locale; page: PageKey; label: string }) {
+  return (
+    <div role="group" aria-label={label} className="flex items-center rounded-full border border-foreground/15 p-0.5 text-xs font-bold">
+      {(["sv", "en"] as Locale[]).map((l) => (
+        <Link
+          key={l}
+          to={pathFor(l, page)}
+          aria-current={l === locale ? "true" : undefined}
+          hrefLang={l}
+          className={cn(
+            "rounded-full px-2.5 py-1.5 uppercase transition-colors",
+            l === locale ? "bg-foreground text-background" : "text-foreground/60 hover:text-foreground",
+          )}
+        >
+          {l}
+        </Link>
+      ))}
+    </div>
+  );
 }
-function Footer({locale}:{locale:Locale}) {
-  const t=dict[locale];
-  return <footer className="bg-forest text-forest-foreground"><div className="container-site py-12 md:py-16"><div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr]">
-    <div><Link to={pathFor(locale,"home")} aria-label={t.nav.homeLabel}><Wordmark /></Link><p className="mt-5 max-w-xs text-sm text-forest-muted">{t.footer.tagline}</p></div>
-    <div><p className="eyebrow text-forest-muted">{t.contact.details}</p><p className="mt-5 text-sm">{t.contact.city}</p><a href={`mailto:${CONTACT_EMAIL}`} className="mt-3 block break-all text-sm hover:underline">{CONTACT_EMAIL}</a></div>
-    <div className="flex flex-col items-start gap-3">{(["services","about","contact"] as PageKey[]).map(p=><Link key={p} to={pathFor(locale,p)} className="text-sm hover:underline">{t.nav[p]}</Link>)}<a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="mt-1"><Facebook className="size-4" /></a></div>
-  </div><div className="mt-12 flex items-center justify-between border-t border-forest-foreground/20 pt-6 text-xs text-forest-muted"><span>© {new Date().getFullYear()} {t.footer.rights}</span><LangSwitch locale={locale} page="home" label={t.nav.langLabel} /></div></div></footer>;
+
+function Footer({ locale }: { locale: Locale }) {
+  const t = dict[locale];
+  const socials = [
+    { href: SOCIAL.facebook, label: "Facebook", Icon: Facebook },
+    { href: SOCIAL.linkedin, label: "LinkedIn", Icon: Linkedin },
+    { href: SOCIAL.instagram, label: "Instagram", Icon: Instagram },
+  ];
+  return (
+    <footer className="grain bg-forest text-forest-foreground">
+      <div className="container-site grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div>
+          <img src={logo} alt="Ekonomika" width={150} height={50} className="h-10 w-auto brightness-0 invert" loading="lazy" />
+          <p className="font-display mt-6 max-w-xs text-3xl leading-tight">{t.footer.tagline}</p>
+        </div>
+        <div>
+          <p className="eyebrow text-forest-muted">{t.contact.details}</p>
+          <ul className="mt-4 space-y-2 text-sm">
+            <li>{t.contact.city}</li>
+            <li><a href={`mailto:${CONTACT_EMAIL}`} className="underline-offset-4 hover:underline">{CONTACT_EMAIL}</a></li>
+          </ul>
+        </div>
+        <div>
+          <p className="eyebrow text-forest-muted">{t.contact.follow}</p>
+          <div className="mt-4 flex gap-2">
+            {socials.map(({ href, label, Icon }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                className="inline-flex size-11 items-center justify-center rounded-full border border-forest-foreground/20 transition-all hover:-translate-y-0.5 hover:border-leaf hover:text-leaf">
+                <Icon className="size-4" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-forest-foreground/10">
+        <div className="container-site flex flex-wrap justify-between gap-2 py-6 text-xs text-forest-muted">
+          <span>© {new Date().getFullYear()} {t.footer.rights}</span>
+          <span>{t.contact.city}</span>
+        </div>
+      </div>
+    </footer>
+  );
 }

@@ -17,11 +17,11 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         brand:
-          "rounded-none bg-primary text-primary-foreground hover:bg-primary/85 transition-all duration-300",
-        leaf: "rounded-none bg-accent text-accent-foreground hover:bg-accent/85 transition-all duration-300",
-        line: "rounded-none border border-foreground/25 text-foreground hover:border-foreground hover:bg-foreground/5 transition-all duration-300",
+          "rounded-full bg-primary text-primary-foreground shadow-soft hover:bg-forest hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300",
+        leaf: "rounded-full bg-accent text-accent-foreground hover:bg-leaf hover:-translate-y-0.5 transition-all duration-300",
+        line: "rounded-full border border-foreground/20 text-foreground hover:border-foreground hover:bg-foreground/5 transition-all duration-300",
         lineLight:
-          "rounded-none border border-forest-foreground/30 text-forest-foreground hover:border-forest-foreground hover:bg-forest-foreground/10 transition-all duration-300",
+          "rounded-full border border-forest-foreground/30 text-forest-foreground hover:border-forest-foreground hover:bg-forest-foreground/10 transition-all duration-300",
       },
       size: {
         default: "h-9 px-4 py-2",

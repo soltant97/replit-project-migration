@@ -33,5 +33,3 @@ use the editor.
 - All site copy for both languages lives in `src/content/site.ts`; pages in `src/components/site/` read from it so SV/EN stay in sync and route files stay thin.
 - Contact form posts to FormSubmit's AJAX endpoint (the provider the original site used); no backend needed.
 - Photos are pre-optimized WebP in `src/assets/`; keep new images small (WebP, ~900px) for load speed.
-- Shared editorial styling lives in global semantic tokens and site layout classes; all page compositions use those tokens so both languages retain the same identity.
-- Generated architectural imagery is illustrative, not a claim about the firm's premises; its alt text must identify that distinction.
