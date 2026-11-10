@@ -16,7 +16,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
           <ol className="space-y-4">
             {a.points.map((p, i) => (
               <li key={p.title} data-reveal style={{ transitionDelay: `${i * 120}ms` }} className="flex gap-6 rounded-3xl border border-border bg-card p-7 shadow-soft">
-                <span className="font-display text-5xl leading-none text-leaf">0{i + 1}</span>
+                <span className="font-display text-4xl leading-none text-leaf">0{i + 1}</span>
                 <div>
                   <h2 className="text-xl font-bold">{p.title}</h2>
                   <p className="mt-2 leading-relaxed text-muted-foreground">{p.text}</p>

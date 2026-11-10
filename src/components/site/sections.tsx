@@ -11,7 +11,7 @@ export function PageHeader({ eyebrow, title, lead, children }: { eyebrow: string
       <div className="pointer-events-none absolute -right-32 -top-32 size-[28rem] rounded-full bg-accent/30 blur-3xl" aria-hidden />
       <div className="container-site relative">
         <p className="eyebrow text-primary animate-word-in">{eyebrow}</p>
-        <h1 className="font-display mt-5 max-w-4xl text-5xl leading-[1.02] md:text-7xl lg:text-8xl animate-word-in" style={{ animationDelay: "80ms" }}>
+        <h1 className="font-display mt-5 max-w-4xl text-4xl leading-[1.02] md:text-[3.25rem] lg:text-[3.625rem] animate-word-in" style={{ animationDelay: "80ms" }}>
           {title}
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl animate-word-in" style={{ animationDelay: "160ms" }}>
@@ -31,7 +31,7 @@ export function ProcessSteps({ locale, dark = false }: { locale: Locale; dark?: 
         <div className="grid gap-8 md:grid-cols-2 md:items-end" data-reveal>
           <div>
             <p className={cn("eyebrow", dark ? "text-leaf" : "text-primary")}>{p.eyebrow}</p>
-            <h2 className="font-display mt-4 text-4xl leading-tight md:text-6xl">{p.title}</h2>
+            <h2 className="font-display mt-4 text-3xl leading-tight md:text-[2.5rem]">{p.title}</h2>
           </div>
           <p className={cn("text-lg md:justify-self-end md:text-right", dark ? "text-forest-muted" : "text-muted-foreground")}>{p.lead}</p>
         </div>
@@ -47,7 +47,7 @@ export function ProcessSteps({ locale, dark = false }: { locale: Locale; dark?: 
               )}
             >
               <div className="flex items-baseline justify-between">
-                <span className="font-display text-6xl text-leaf">0{i + 1}</span>
+                <span className="font-display text-[2.5rem] text-leaf">0{i + 1}</span>
                 <span className={cn("eyebrow", dark ? "text-forest-muted" : "text-muted-foreground")}>{s.tag}</span>
               </div>
               <h3 className="mt-10 text-xl font-bold">{s.title}</h3>
@@ -69,7 +69,7 @@ export function CtaBand({ locale }: { locale: Locale }) {
           <div className="pointer-events-none absolute -bottom-24 -right-16 size-80 rounded-full bg-leaf/60 blur-2xl animate-float" aria-hidden />
           <div className="relative grid gap-8 md:grid-cols-[1.5fr_1fr] md:items-end">
             <div>
-              <h2 className="font-display text-4xl leading-tight md:text-6xl">{c.title}</h2>
+              <h2 className="font-display text-3xl leading-tight md:text-[2.5rem]">{c.title}</h2>
               <p className="mt-4 max-w-xl text-lg opacity-80">{c.text}</p>
             </div>
             <Button asChild variant="brand" size="xl" className="md:justify-self-end">

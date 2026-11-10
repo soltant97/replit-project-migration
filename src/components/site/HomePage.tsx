@@ -43,7 +43,7 @@ function Hero({ locale }: { locale: Locale }) {
       <div className="container-site relative grid items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
         <div>
           <p className="eyebrow text-primary animate-word-in">{h.eyebrow}</p>
-          <h1 className="font-display mt-6 text-[clamp(3rem,8vw,6.5rem)] leading-[0.95]">
+          <h1 className="font-display mt-6 text-[clamp(2.125rem,4vw,3.625rem)] leading-[0.95]">
             <span className="sr-only">{h.professions.join(", ")}</span>
             <span aria-hidden className="block">
               {h.professions.map((p, idx) => (
@@ -115,7 +115,7 @@ function Intro({ locale }: { locale: Locale }) {
   return (
     <section className="py-24 md:py-36">
       <div className="container-site">
-        <p data-reveal className="font-display mx-auto max-w-5xl text-center text-3xl leading-[1.2] md:text-5xl">
+        <p data-reveal className="font-display mx-auto max-w-5xl text-center text-2xl leading-[1.2] md:text-4xl">
           {dict[locale].intro}
         </p>
       </div>
@@ -135,7 +135,7 @@ function Finder({ locale }: { locale: Locale }) {
         <div data-reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="eyebrow text-primary">{f.eyebrow}</p>
-            <h2 className="font-display mt-4 text-4xl md:text-6xl">{f.title}</h2>
+            <h2 className="font-display mt-4 text-3xl md:text-[2.5rem]">{f.title}</h2>
           </div>
           <div role="tablist" aria-label={f.title} className="flex flex-wrap gap-2">
             {keys.map((k) => (
@@ -176,7 +176,7 @@ function Finder({ locale }: { locale: Locale }) {
             ))}
           </div>
           <div key={active} className="flex flex-col p-8 md:p-12 lg:p-14">
-            <h3 className="font-display animate-word-in text-3xl leading-tight md:text-4xl">{a.title}</h3>
+            <h3 className="font-display animate-word-in text-2xl leading-tight md:text-3xl">{a.title}</h3>
             <p className="animate-word-in mt-4 text-lg leading-relaxed text-muted-foreground" style={{ animationDelay: "80ms" }}>{a.text}</p>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {a.items.map((it, idx) => (

@@ -27,9 +27,9 @@ export function ServicesPage({ locale }: { locale: Locale }) {
                   <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-accent text-accent-foreground transition-transform duration-500 group-hover:rotate-6">
                     <Icon className="size-6" />
                   </span>
-                  <span className="font-display text-5xl text-foreground/15">0{i + 1}</span>
+                  <span className="font-display text-4xl text-foreground/15">0{i + 1}</span>
                 </div>
-                <h2 className="font-display mt-8 text-4xl">{c.title}</h2>
+                <h2 className="font-display mt-8 text-3xl">{c.title}</h2>
                 <ul className="mt-6 divide-y divide-border">
                   {c.items.map((it) => (
                     <li key={it} className="py-3 font-medium text-foreground/85">{it}</li>

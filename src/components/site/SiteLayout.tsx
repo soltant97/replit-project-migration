@@ -98,7 +98,7 @@ export function SiteLayout({ locale, page, children }: { locale: Locale; page: P
         <ul className="space-y-2">
           {[...NAV, "contact" as PageKey].map((p, i) => (
             <li key={p} style={{ transitionDelay: open ? `${80 + i * 60}ms` : "0ms" }} className={cn("transition-all duration-500", open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")}>
-              <Link to={pathFor(locale, p)} className="font-display block py-2 text-5xl">
+              <Link to={pathFor(locale, p)} className="font-display block py-2 text-4xl">
                 {t.nav[p]}
               </Link>
             </li>
@@ -152,7 +152,7 @@ function Footer({ locale }: { locale: Locale }) {
       <div className="container-site grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <img src={logo} alt="Ekonomika" width={150} height={50} className="h-10 w-auto brightness-0 invert" loading="lazy" />
-          <p className="font-display mt-6 max-w-xs text-3xl leading-tight">{t.footer.tagline}</p>
+          <p className="font-display mt-6 max-w-xs text-2xl leading-tight">{t.footer.tagline}</p>
         </div>
         <div>
           <p className="eyebrow text-forest-muted">{t.contact.details}</p>

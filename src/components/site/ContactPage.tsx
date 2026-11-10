@@ -53,7 +53,7 @@ export function ContactPage({ locale, topic }: { locale: Locale; topic?: TopicKe
       <section className="pb-28">
         <div className="container-site grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <aside data-reveal className="grain flex flex-col rounded-[2rem] bg-forest p-8 text-forest-foreground md:p-10">
-            <h2 className="font-display text-3xl">{c.details}</h2>
+            <h2 className="font-display text-2xl">{c.details}</h2>
             <dl className="mt-8 space-y-6">
               <Detail icon={<MapPin className="size-4" />} label={c.address}>{c.city}</Detail>
               <Detail icon={<Mail className="size-4" />} label={c.email}>
@@ -72,7 +72,7 @@ export function ContactPage({ locale, topic }: { locale: Locale; topic?: TopicKe
             {status === "sent" ? (
               <div className="flex min-h-[26rem] flex-col items-start justify-center" role="status">
                 <CheckCircle2 className="size-14 text-leaf animate-word-in" />
-                <p className="font-display mt-6 max-w-md text-4xl leading-tight animate-word-in">{c.form.success}</p>
+                <p className="font-display mt-6 max-w-md text-3xl leading-tight animate-word-in">{c.form.success}</p>
                 <Button variant="line" size="xl" className="mt-8" onClick={() => setStatus("idle")}>{c.form.another}</Button>
               </div>
             ) : (
